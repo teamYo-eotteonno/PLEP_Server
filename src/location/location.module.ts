@@ -5,11 +5,17 @@ import { LocationController } from './location.controller';
 import { Attraction } from '../attractions/attraction.entity'; // 이전에 만든 엔티티
 import { KakaoMapService } from '../kakao-map/kakao-map.service';
 import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
+import {UserLocation} from "./location.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Attraction]), // Attraction 엔티티 사용
-    HttpModule, // KakaoMapService에서 HTTP 요청을 위해 필요
+    HttpModule,
+    ConfigModule,
+    TypeOrmModule.forFeature([
+      Attraction,
+      UserLocation, // 또는 UserLocationRepository (커스텀이라면)
+    ]),
   ],
   controllers: [LocationController],
   providers: [LocationService, KakaoMapService],

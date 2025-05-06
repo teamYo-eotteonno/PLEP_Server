@@ -9,10 +9,10 @@ export class UserLocation {
   @Column()
   name: string;
 
-  @Column('double')
+  @Column({ type: 'double precision' })
   latitude: number;
 
-  @Column('double')
+  @Column({ type: 'double precision' })
   longitude: number;
 
   @Column()

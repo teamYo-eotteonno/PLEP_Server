@@ -31,4 +31,6 @@ export class UserLocation {
 
   @Column()
   address: string;
+
+
 }

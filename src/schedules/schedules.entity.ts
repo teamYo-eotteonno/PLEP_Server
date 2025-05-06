@@ -1,43 +1,48 @@
-import { 
-    Entity, 
-    PrimaryGeneratedColumn, 
-    Column, 
-    CreateDateColumn, 
-    UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne
+} from 'typeorm';
+import { forwardRef } from '@nestjs/common';
+import { User } from '../user/user.entity';
+import {Group} from "../group/group.entity";
 
 @Entity('schedules')
 export class Schedule {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // 일정 제목
   @Column()
   title: string;
 
-  // 일정 날짜
   @Column({ type: 'date' })
   date: string;
 
-  // 일정 시간 
   @Column({ type: 'time', nullable: true })
   time: string | null;
 
-  // 일정 하루 종일 설정
   @Column({ default: false })
   allDay: boolean;
 
-  // 일정에 대한 위치 url
   @Column({ nullable: true })
   locationUrl: string;
 
-  // 일정에 관한 메모
   @Column({ type: 'text', nullable: true })
   memo: string;
-
 
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @ManyToOne(() => User, user => user.schedules, { onDelete: 'CASCADE' })
+  user: User;
+
+  @ManyToOne(() => Group, group => group.schedules, { nullable: true })
+  group: Group; // 그룹 (선택 사항)
+
 }

@@ -1,5 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Group } from '../group/group.entity'; // Group 엔티티 임포트
+import { Schedule } from '../schedules/schedules.entity';
 import { UserLocation } from './user-location.entity';
+import {GroupMember} from "../group/group-member.entity";
 
 @Entity()
 export class User {
@@ -30,4 +33,16 @@ export class User {
   // 위치 관계
   @OneToMany(() => UserLocation, location => location.user)
   locations: UserLocation[];
+
+  @OneToMany(() => Schedule, schedule => schedule.user)
+  schedules: Schedule[];
+
+  // 그룹 관계 (ManyToMany: 유저는 여러 그룹에 속할 수 있음)
+  @ManyToMany(() => Group, group => group.members)
+  @JoinTable()
+  groups: Group[];
+
+  @OneToMany(() => GroupMember, (groupMember) => groupMember.user)
+  groupMembers: GroupMember[];
+
 }

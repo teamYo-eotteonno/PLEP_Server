@@ -39,4 +39,19 @@ export class UserService {
     );
     return response.data.documents[0];
   }
+
+  // async updateProfile(userId: number, updateDto: UpdateProfileDto): Promise<User> {
+  //   const user = await this.userRepository.findOne({ where: { id: userId } });
+  //
+  //   if (!user) {
+  //     throw new NotFoundException('User not found');
+  //   }
+  //
+  //   // 변경 가능한 필드만 업데이트
+  //   if (updateDto.profileImage !== undefined) user.profileImage = updateDto.profileImage;
+  //   if (updateDto.nickname !== undefined) user.nickname = updateDto.nickname;
+  //   if (updateDto.bio !== undefined) user.bio = updateDto.bio;
+  //
+  //   return this.userRepository.save(user);
+  // }
 }

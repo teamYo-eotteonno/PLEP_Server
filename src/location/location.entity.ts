@@ -1,63 +1,49 @@
-// user-location.entity.ts
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
-import { User } from "../user/user.entity";
-import {Group} from "../group/group.entity";
+// src/location/location.entity.ts
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Group } from '../group/group.entity'; // Group 엔티티 임포트
+import { User } from '../user/user.entity'; // User 엔티티 임포트
 
 @Entity()
-export class UserLocation {
+export class Location {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.locations)
-  @JoinColumn({ name: 'userId' })
-  user: User;
+  @Column()
+  kakaoPlaceId: string;  // kakaoPlaceId 추가
 
   @Column()
-  userId: number; // 👈 실제 외래키 컬럼
+  placeName: string;      // placeName 추가
 
   @Column()
-  name: string;
+  address: string;        // address 추가
 
   @Column()
-  address: string;
-
-  @Column()
-  kakaoPlaceId: string;
-
-  @Column()
-  placeName: string;
-
-  @Column({ nullable: true })
-  roadAddress: string;
+  roadAddress: string;    // roadAddress 추가
 
   @Column({ type: 'decimal', precision: 10, scale: 7 })
-  latitude: number;
+  latitude: number;       // latitude 추가
 
   @Column({ type: 'decimal', precision: 10, scale: 7 })
-  longitude: number;
+  longitude: number;      // longitude 추가
 
-  @Column({ nullable: true })
-  kakaoPlaceUrl: string;
+  @Column()
+  kakaoPlaceUrl: string;  // kakaoPlaceUrl 추가
 
-  @Column({ nullable: true })
-  category: string;
+  @Column()
+  category: string;       // category 추가
 
-  @Column({ nullable: true })
-  phone: string;
-
-  // 향후 친구가 넘겨줄 추가 정보용
-  @Column({ type: 'json', nullable: true })
-  extraData: any;
+  @Column()
+  phone: string;          // phone 추가
 
   @ManyToOne(() => Group, (group) => group.locations)
   group: Group;
 
+  @ManyToOne(() => User, (user) => user.locations)
+  user: User;
 
+  @Column()
+  userId: number; // userId 외래키 컬럼
+
+  @Column({ nullable: true })
+  extraData: string | null;  // extraData 추가 (옵션, null 가능)
 }
-export class Location {}

@@ -8,7 +8,7 @@ import {
 import { User } from '../user/user.entity'; // User 엔티티 임포트
 import { Schedule } from '../schedules/schedules.entity';
 import { v4 as uuidv4 } from 'uuid';
-import {GroupMember} from "./group-member.entity";
+import { GroupMember } from "./group-member.entity";
 import { Location } from '../location/location.entity';
 
 @Entity()

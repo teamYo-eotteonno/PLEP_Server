@@ -62,6 +62,10 @@ export class PlaceService {
       group: group,
     });
 
-    return await this.locationRepository.save(location);
+    // save() 메서드는 배열을 반환할 수 있으므로 첫 번째 객체만 반환하도록 처리
+    const savedLocation = await this.locationRepository.save(location);
+
+    // 단일 객체를 반환합니다.
+    return Array.isArray(savedLocation) ? savedLocation[0] : savedLocation;
   }
 }

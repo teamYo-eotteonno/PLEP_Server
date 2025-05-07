@@ -7,6 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { User } from "../user/user.entity";
+import {Group} from "../group/group.entity";
 
 @Entity()
 export class UserLocation {
@@ -23,14 +24,40 @@ export class UserLocation {
   @Column()
   name: string;
 
-  @Column('float')
-  latitude: number;
-
-  @Column('float')
-  longitude: number;
-
   @Column()
   address: string;
 
+  @Column()
+  kakaoPlaceId: string;
+
+  @Column()
+  placeName: string;
+
+  @Column({ nullable: true })
+  roadAddress: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 7 })
+  latitude: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 7 })
+  longitude: number;
+
+  @Column({ nullable: true })
+  kakaoPlaceUrl: string;
+
+  @Column({ nullable: true })
+  category: string;
+
+  @Column({ nullable: true })
+  phone: string;
+
+  // 향후 친구가 넘겨줄 추가 정보용
+  @Column({ type: 'json', nullable: true })
+  extraData: any;
+
+  @ManyToOne(() => Group, (group) => group.locations)
+  group: Group;
+
 
 }
+export class Location {}

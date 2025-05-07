@@ -9,6 +9,7 @@ import { User } from '../user/user.entity'; // User 엔티티 임포트
 import { Schedule } from '../schedules/schedules.entity';
 import { v4 as uuidv4 } from 'uuid';
 import {GroupMember} from "./group-member.entity";
+import { Location } from '../location/location.entity';
 
 @Entity()
 export class Group {
@@ -34,7 +35,7 @@ export class Group {
 
   // 그룹에 속한 회원들
   @ManyToMany(() => User, user => user.groups)
-  members: User[];
+  user: User[];
 
   // 그룹에 공유된 일정들
   @OneToMany(() => Schedule, schedule => schedule.group)
@@ -43,6 +44,8 @@ export class Group {
   @OneToMany(() => GroupMember, (groupMember) => groupMember.group)
   members: GroupMember[];
 
+  @OneToMany(() => Location, (location) => location.group)
+  locations: Location[];
 
   // 9개의 해시태그를 설정할 수 있는 기능 추가
   @Column('simple-array', { nullable: true })

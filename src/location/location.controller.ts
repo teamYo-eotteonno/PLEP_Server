@@ -45,7 +45,7 @@ export class LocationController {
   async saveLocation(@Body() saveLocationDto: SaveLocationDto) {
     return this.locationService.saveUserLocation(
       saveLocationDto.userId,
-      saveLocationDto.name,
+      //saveLocationDto.name,
       saveLocationDto.latitude,
       saveLocationDto.longitude,
       saveLocationDto.address,

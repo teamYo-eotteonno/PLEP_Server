@@ -34,8 +34,7 @@ export class Group {
   }
 
   // 그룹에 속한 회원들
-  @ManyToMany(() => User, user => user.groups)
-  user: User[];
+  // @ManyToMany(() => User, user => user.groups)
 
   // 그룹에 공유된 일정들
   @OneToMany(() => Schedule, schedule => schedule.group)

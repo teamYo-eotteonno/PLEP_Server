@@ -44,6 +44,6 @@ export class Location {
   @Column()
   userId: number; // userId 외래키 컬럼
 
-  @Column({ nullable: true })
-  extraData: string | null;  // extraData 추가 (옵션, null 가능)
+  @Column({ type: 'jsonb', nullable: true }) // 또는 type을 'simple-json'으로도 가능
+  extraData?: Record<string, any> | null;  // extraData 추가 (옵션, null 가능)
 }

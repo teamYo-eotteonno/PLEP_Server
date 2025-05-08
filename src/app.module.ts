@@ -10,6 +10,7 @@ import { GroupModule } from './group/group.module';
 import { Schedule } from "./schedules/schedules.entity";
 import { Group } from "./group/group.entity";
 import {GroupMember} from "./group/group-member.entity";
+import { Location } from './location/location.entity';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import {GroupMember} from "./group/group-member.entity";
           UserLocation,
           Schedule,
           Group,
-          GroupMember ], // 엔티티 설정 좀 잘 넣어라 제발 넣고 에러 확인하라고..
+          GroupMember,
+          Location ], // 엔티티 설정 좀 잘 넣어라 제발 넣고 에러 확인하라고..
         synchronize: true, // 자동 동기화
       }),
       inject: [ConfigService], // ConfigService를 주입

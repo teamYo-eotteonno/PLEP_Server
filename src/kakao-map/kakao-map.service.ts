@@ -17,8 +17,7 @@ export class KakaoMapService {
     };
   }
 
-  async searchPlaces(user: User, query: string) {
-    if (!user) throw new ForbiddenException('로그인이 필요합니다');
+  async searchPlaces(query: string) {
 
     const url = 'https://dapi.kakao.com/v2/local/search/keyword.json';
     const response = await firstValueFrom(

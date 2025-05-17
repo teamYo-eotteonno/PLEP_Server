@@ -8,8 +8,8 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2023",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
+    "outDir": "./dist",      // ✅ 현재는 dist/src로 나감
+    "rootDir": "./src",      // ✅ 이걸 맞춰야 src만 빌드됨
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -17,6 +17,5 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "rootDir": "./"
   }
 }

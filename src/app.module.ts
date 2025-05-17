@@ -9,7 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { GroupModule } from './group/group.module';
 import { Schedule } from "./schedules/schedules.entity";
 import { Group } from "./group/group.entity";
-import {GroupMember} from "./group/group-member.entity";
+import { GroupMember } from "./group/group-member.entity";
 import { Location } from './location/location.entity';
 
 @Module({

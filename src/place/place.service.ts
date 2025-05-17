@@ -30,6 +30,30 @@ export class PlaceService {
     this.kakaoRestApiKey = key;
   }
 
+  // place.service.ts
+  async getNearbyPlaces(lat: number, lng: number) {
+    const radius = 1000; // 1km
+
+    const kakaoApiUrl = `https://dapi.kakao.com/v2/local/search/category.json?category_group_code=FD6&x=${lng}&y=${lat}&radius=${radius}`;
+
+    const response = await firstValueFrom(
+      this.httpService.get(kakaoApiUrl, {
+        headers: {
+          Authorization: `KakaoAK ${this.kakaoRestApiKey}`,
+        },
+      }),
+    );
+
+    if (!response?.data?.documents) {
+      console.error('Kakao API response error:', response.data);
+      throw new Error('Invalid Kakao API response');
+    }
+
+    return response.data.documents;
+  }
+
+
+
   // 1. 키워드로 장소 검색
   async searchPlaces(keyword: string): Promise<any> {
     const url = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(keyword)}`;
